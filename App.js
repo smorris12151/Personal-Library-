@@ -5,6 +5,10 @@
 /* eslint-disable no-unused-vars */
 const myLibrary = [];
 const libraryContainer = document.getElementById("libraryContainer");
+const submitButton = document.getElementById("submitButton");
+
+const newBookButton = document.getElementById("newBookButton");
+const bookSubmissionForm = document.getElementById("bookSubmissionForm");
 
 function Book(title, author, length, status, rating) {
   this.title = title;
@@ -55,32 +59,27 @@ function printCard() {
   const card = document.createElement("div");
   card.id = "card";
   const title = document.createElement("div");
-  title.id = "title";
   title.textContent = buildTitle();
   card.appendChild(title);
 
   const author = document.createElement("div");
-  author.id = "author";
   author.textContent = buildAuthor();
   card.appendChild(author);
 
   const pageCount = document.createElement("div");
-  pageCount.id = "pageCount";
   pageCount.textContent = buildPageCount();
   card.appendChild(pageCount);
 
   const status = document.createElement("div");
-  status.id = "status";
   status.textContent = buildStatus();
   card.appendChild(status);
 
   const rating = document.createElement("div");
-  rating.id = "rating";
   rating.textContent = buildRating();
   card.appendChild(rating);
-
   libraryContainer.appendChild(card);
 }
+
 function buildBook() {
   const newBook = new Book(
     buildTitle(),
@@ -91,5 +90,22 @@ function buildBook() {
   );
   addBookToLibrary(newBook);
   printCard();
-  // alert(myLibrary[myLibrary.length - 1].author);
+  bookSubmissionForm.reset();
+  libraryContainer.appendChild(bookSubmissionForm);
+  libraryContainer.appendChild(newBookButton);
 }
+
+function displayForm() {
+  newBookButton.style.display = "none";
+  newBookButton.before(bookSubmissionForm);
+  bookSubmissionForm.style.display = "grid";
+}
+newBookButton.addEventListener("click", displayForm);
+
+function hideForm(event) {
+  event.preventDefault();
+  newBookButton.style.display = "block";
+  bookSubmissionForm.style.display = "none";
+  buildBook();
+}
+submitButton.addEventListener("click", hideForm);
