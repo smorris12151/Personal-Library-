@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-#bookContainer {
+#libraryContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35ch, 1fr));
   grid-template-rows: 1fr;
@@ -15,9 +15,9 @@
   height: 100vh;
 }
 
-#libraryBook {
+#card {
   display: grid;
-  grid-template-rows: min-content;
+  grid-template-rows: 1fr;
   gap: 2rem;
   border-radius: 25px;
   background-color: rgba(142, 180, 142, 0.736);
@@ -31,7 +31,7 @@
 }
 
 #bookSubmission {
-  display: none;
+  display: grid;
   max-width: 100%;
   height: auto;
 }
