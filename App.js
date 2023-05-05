@@ -10,16 +10,13 @@ const submitButton = document.getElementById("submitButton");
 const newBookButton = document.getElementById("newBookButton");
 const bookSubmissionForm = document.getElementById("bookSubmissionForm");
 
-function Book(title, author, length, status, rating) {
-  this.title = title;
-  this.author = author;
-  this.length = length;
-  this.staus = status;
-  this.rating = rating;
+function Book() {
+  this.title = document.getElementById("title").value;
+  this.author = document.getElementById("author").value;
+  this.pageCount = document.getElementById("pageCount").value;
+  this.status = document.getElementById("status").value;
+  this.rating = document.getElementById("rating").value;
 }
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.length}, ${this.status}`;
-};
 
 function addBookToLibrary(book) {
   if (!myLibrary.includes(book)) {
@@ -27,69 +24,35 @@ function addBookToLibrary(book) {
   }
 }
 
-function buildTitle() {
-  const title = document.createElement("div");
-  title.textContent = document.getElementById("title").value;
-  return title.textContent;
-}
-
-function buildAuthor() {
-  const author = document.createElement("div");
-  author.textContent = document.getElementById("author").value;
-  return author.textContent;
-}
-function buildPageCount() {
-  const pageCount = document.createElement("div");
-  pageCount.textContent = document.getElementById("pageCount").value;
-  return pageCount.textContent;
-}
-function buildStatus() {
-  const status = document.createElement("div");
-  status.textContent = document.getElementById("status").value;
-  return status.textContent;
-}
-
-function buildRating() {
-  const rating = document.createElement("div");
-  rating.textContent = document.getElementById("rating").value;
-  return rating.textContent;
-}
-
-function printCard() {
+function printCard(newBook) {
   const card = document.createElement("div");
   card.id = "card";
   const title = document.createElement("div");
-  title.textContent = buildTitle();
+  title.textContent = newBook.title;
   card.appendChild(title);
 
   const author = document.createElement("div");
-  author.textContent = buildAuthor();
+  author.textContent = newBook.author;
   card.appendChild(author);
 
   const pageCount = document.createElement("div");
-  pageCount.textContent = buildPageCount();
+  pageCount.textContent = newBook.pageCount;
   card.appendChild(pageCount);
 
   const status = document.createElement("div");
-  status.textContent = buildStatus();
+  status.textContent = newBook.status;
   card.appendChild(status);
 
   const rating = document.createElement("div");
-  rating.textContent = buildRating();
+  rating.textContent = newBook.rating;
   card.appendChild(rating);
   libraryContainer.appendChild(card);
 }
 
 function buildBook() {
-  const newBook = new Book(
-    buildTitle(),
-    buildAuthor(),
-    buildPageCount(),
-    buildStatus(),
-    buildRating()
-  );
+  const newBook = new Book();
   addBookToLibrary(newBook);
-  printCard();
+  printCard(newBook);
   bookSubmissionForm.reset();
   libraryContainer.appendChild(bookSubmissionForm);
   libraryContainer.appendChild(newBookButton);
