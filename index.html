@@ -8,5 +8,25 @@
     <link rel="stylesheet" href="style.css" />
     <script src="App.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div id="container"></div>
+
+    <button id="btn">New Book</button>
+
+    <form id="input">
+      <label for="title">title</label>
+      <input type="text" name="title" id="title" />
+      <label for="author">author</label>
+      <input type="text" name="author" id="author" />
+      <label for="pages">pages</label>
+      <input type="tel" name="pages" id="pages" />
+      <label for="status">status</label>
+      <select name="status" id="status">
+        Status
+        <option value="read">read</option>
+        <option value="unread">unread</option>
+      </select>
+      <button id="addBook">Add Book</button>
+    </form>
+  </body>
 </html>
