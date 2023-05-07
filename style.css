@@ -9,6 +9,7 @@
   flex-wrap: wrap;
 }
 #card {
+  display: grid;
   border: 2px solid blue;
   border-radius: 25px;
   padding: 1rem;

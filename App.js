@@ -37,21 +37,33 @@ Book.prototype.info = function (book) {
     this.status
   );
 };
+
 function addBookToLibrary(book) {
   if (!myLibrary.includes(book)) {
     myLibrary.push(book);
   }
 }
+
 function buildLibrary() {
   const container = document.getElementById("container");
   container.innerHTML = "";
   for (let i = 0; i < myLibrary.length; i++) {
     const card = document.createElement("div");
     card.id = "card";
+    card.dataset.indexNumber = [i];
     card.textContent = myLibrary[i].info();
+    const remove = document.createElement("button");
+    remove.textContent = "Remove Entry";
+    remove.dataset.indexNumber = [i];
+    remove.addEventListener("click", () => {
+      myLibrary.splice(remove.dataset.indexNumber, 1);
+      buildLibrary();
+    });
     container.appendChild(card);
+    card.appendChild(remove);
   }
 }
+
 addBook.addEventListener("click", (event) => {
   event.preventDefault();
   const newBook = new Book();
