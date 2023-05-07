@@ -59,8 +59,24 @@ function buildLibrary() {
       myLibrary.splice(remove.dataset.indexNumber, 1);
       buildLibrary();
     });
+
+    card.dataset.status = myLibrary[i].status;
+    const update = document.createElement("button");
+    update.textContent = "Update status";
+    update.addEventListener("click", () => {
+      if (card.dataset.status === "read") {
+        card.dataset.status = "unread";
+        myLibrary[i].status = "unread";
+        buildLibrary();
+      } else {
+        card.dataset.status = "read";
+        myLibrary[i].status = "read";
+        buildLibrary();
+      }
+    });
     container.appendChild(card);
     card.appendChild(remove);
+    card.appendChild(update);
   }
 }
 
